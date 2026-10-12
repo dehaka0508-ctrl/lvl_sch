@@ -44,6 +44,7 @@
     .pet-stage{height:195px;display:grid;place-items:center;position:relative;z-index:1}
     .pet-glow{position:absolute;width:160px;height:160px;background:#f7d9827a;border-radius:50%;filter:blur(1px)}
     .pet{width:180px;height:180px;position:relative;animation:bob 3.3s ease-in-out infinite;filter:drop-shadow(0 12px 8px #41523b20)}
+    .equipped-badge{position:absolute;right:25px;bottom:17px;z-index:3;display:grid;place-items:center;width:43px;height:43px;border-radius:15px;background:#fff;border:2px solid #fff9d8;font-size:25px;box-shadow:0 6px 16px #384b3330;transform:rotate(8deg)}
     @keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
     .spark{position:absolute;color:#fff;font-size:18px;animation:twinkle 2.2s infinite}
     .spark.s1{top:24px;left:27px}.spark.s2{top:53px;right:10px;animation-delay:.8s}.spark.s3{bottom:31px;left:20px;animation-delay:1.2s}
@@ -184,6 +185,7 @@
                 <path d="M66 91c11-7 22-8 32-3m12 0c11-5 22-4 32 3" fill="none" stroke="#fff1d5" stroke-width="3" stroke-linecap="round" opacity=".9"/>
                 <circle cx="100" cy="86" r="5" fill="#f1d27b"/>
               </svg>
+              <span id="petEquip" class="equipped-badge" aria-label="현재 적용한 아이템">🍄</span>
             </div>
           </section>
 
@@ -213,7 +215,7 @@
 
         <aside class="side-col">
           <section class="card pet-card">
-            <div class="section-head"><div><h2 class="section-title">오늘의 파트너</h2><p class="pet-mood" id="petMood">천천히 시작해도 괜찮아!</p></div><div class="streak">🔥 <b id="streakNum">0</b>일 실천</div></div>
+            <div class="section-head"><div><h2 class="section-title">오늘의 파트너</h2><p class="pet-mood" id="petMood">천천히 시작해도 괜찮아!</p></div><div class="streak">✨ <b id="streakNum">0</b>건 완료</div></div>
             <div class="pet-card-row">
               <div class="pet-thought" id="petThought">오늘 할 일 하나를 완료하면<br>내가 기뻐할 거야!</div>
               <svg class="pet-small" viewBox="0 0 200 200" aria-hidden="true">
@@ -363,6 +365,9 @@
         $("#collectionCount").textContent=(state.unlocked||[]).length+" / "+REWARDS.length+" 수집";
         $("#syncLabel").textContent=state.connected?"LearningX 연결됨":"LearningX 연결하기";
         $("#syncLight").style.background=state.connected?"#6eab71":"#f0b54f";
+        var equipped=REWARDS.find(function(r){return r.id===state.equipped;});
+        $("#petEquip").textContent=equipped?equipped.icon:"🌱";
+        $("#petEquip").title=equipped?equipped.name+" 적용 중":"기본 모습";
         var doneToday=state.tasks.filter(function(t){return t.date===localYmd(new Date())&&t.done;}).length;
         $("#petMood").textContent=doneToday?"오늘도 반짝 성장 중!":"천천히 시작해도 괜찮아!";
         $("#petThought").innerHTML=doneToday?"오늘의 실천이 정원을<br>환하게 만들었어!":"오늘 할 일 하나를 완료하면<br>내가 기뻐할 거야!";
@@ -441,7 +446,7 @@
           return await response.json();
         }finally{clearTimeout(timer);}
       }
-      function query(params){return new URLSearchParams(params).toString();}
+      function query(params){var out=new URLSearchParams();Object.keys(params).forEach(function(k){var v=params[k];(Array.isArray(v)?v:[v]).forEach(function(item){out.append(k,String(item));});});return out.toString();}
       function dueDateParts(dateString){
         if(!dateString)return {date:localYmd(new Date()),time:""};
         var d=new Date(dateString);if(isNaN(d.getTime()))return {date:localYmd(new Date()),time:""};
@@ -474,7 +479,7 @@
               if(!item||!item.completion_requirement||item.completion_requirement.completed!==true)return;
               if(item.type==="Assignment"||item.type==="Quiz")return;
               var label=(item.title||"").toLowerCase();
-              var seemsLesson=/강의|lecture|동영상|영상|수업|week\\s*\\d|\\d+주차/.test(label);
+              var seemsLesson=/강의|lecture|동영상|영상|수업|week\s*\d|\d+주차/.test(label);
               if(!seemsLesson)return;
               var id="lx-lesson-"+course.id+"-"+item.id;
               var existing=state.tasks.find(function(t){return t.id===id;});
@@ -505,7 +510,7 @@
         e.preventDefault();
         var base=$("#lmsUrl").value.trim().replace(/\/+$/,""),token=$("#lmsToken").value.trim();
         var msg=$("#lmsMessage"),btn=$("#connectBtn");
-        if(!/^https:\\/\\//i.test(base)){msg.textContent="https:// 로 시작하는 LMS 주소를 입력해 주세요.";return;}
+        try{if(new URL(base).protocol!=="https:")throw new Error("protocol");}catch(e){msg.textContent="유효한 https:// LMS 주소를 입력해 주세요.";return;}
         if(!token){msg.textContent="액세스 토큰을 입력해 주세요.";return;}
         btn.disabled=true;btn.textContent="연결 중…";msg.textContent="LMS에서 강좌와 일정을 확인하고 있어요.";
         try{
