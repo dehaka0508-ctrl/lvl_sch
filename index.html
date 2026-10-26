@@ -138,15 +138,47 @@
     @media(max-width:1020px){.grid{grid-template-columns:1fr}.side-col{grid-template-columns:1fr 1fr}.side-note{grid-column:1/-1}.calendar{grid-template-columns:repeat(7,minmax(108px,1fr))}}
     @media(max-width:700px){.app{padding:18px 13px 32px}.brand{font-size:18px}.sync-pill .sync-label{display:none}.topbar{margin-bottom:16px}.hero{grid-template-columns:1fr 130px;padding:23px 20px;min-height:215px}.hero h1{font-size:23px}.hero p{font-size:12px}.pet-stage{height:150px}.pet{width:140px;height:140px}.hero:after{right:65px}.xp-track{width:70px}.lower-grid,.side-col{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,minmax(96px,1fr));margin-right:-9px}.week-card{padding:18px 15px}.week-label{min-width:100px;font-size:11px}.collection-full{grid-template-columns:repeat(3,1fr)}.page-tabs{overflow:auto}.tab{white-space:nowrap}.collection-mini{grid-template-columns:repeat(4,1fr)}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-  </style>
+  
+/* RoutineFarm learning experience */
+.rf-login{position:fixed;inset:0;z-index:50;background:linear-gradient(135deg,#f3f8eb,#fff6e6);display:grid;place-items:center;padding:22px;overflow:auto}
+.rf-login[hidden]{display:none}
+.rf-login-layout{width:min(980px,100%);display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+.rf-welcome{padding:42px;min-height:470px;background:linear-gradient(140deg,#d8eacb,#fff3d3);border-radius:34px;position:relative;overflow:hidden}
+.rf-welcome h1{font-size:clamp(35px,4.5vw,56px);line-height:1.17;color:#315840}
+.rf-welcome p{max-width:430px;line-height:1.85;color:#586d56}
+.rf-vegetables{display:flex;align-items:end;gap:12px;margin-top:35px}
+.rf-veg{display:inline-grid;place-items:center;font-size:62px;width:90px;height:100px;background:#ffffff8c;border:2px solid #ffffffad;border-radius:26px;box-shadow:0 10px 22px #3d58301c;transition:transform .2s}
+.rf-veg:nth-child(even){transform:translateY(-15px)}.rf-login-card{background:white;padding:34px;border:1px solid #e4eadd;border-radius:28px;box-shadow:var(--shadow)}
+.rf-login-card h2{font-size:25px;margin:0 0 9px}.rf-login-card p{font-size:13px;line-height:1.75;color:#7a897a}
+.rf-pick{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.rf-pick button{width:65px;min-height:73px;border:2px solid #e5eadf;background:#fafcf8;border-radius:16px;font-size:32px}.rf-pick button.selected{border-color:#608b66;background:#eaf5df}.rf-pick small{display:block;font-size:10px;color:#526c54;font-weight:700}
+.rf-login-card input,.rf-input,.rf-select,.rf-textarea{width:100%;border:1px solid #dbe3d6;border-radius:12px;padding:11px 12px;background:white;color:#26342b;font:inherit}
+.rf-textarea{min-height:90px;resize:vertical}.rf-primary{border:0;border-radius:12px;background:#55795b;color:white;padding:12px 18px;font-weight:800;cursor:pointer}
+.rf-soft{border:1px solid #d9e6d4;background:#f2f8ee;color:#42694a;border-radius:11px;padding:10px 13px;cursor:pointer;font-weight:750}
+.rf-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rf-note{font-size:11px;color:#809080;line-height:1.6}
+.rf-page{padding:25px}.rf-heading{font-size:24px;margin:7px 0 9px}.rf-sub{color:#849185;font-size:13px;line-height:1.8}
+.rf-mission{background:#fff;border:1px solid #e5ebdf;border-radius:16px;padding:15px;margin-top:10px;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.rf-mission.done{background:#f0f8ec}.rf-mission b{display:block;font-size:14px}.rf-mission small{color:#8a9588}
+.rf-two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.rf-panel{background:#f9fcf6;border:1px solid #e7ebdf;padding:18px;border-radius:18px}
+.rf-panel h3{margin:0 0 12px;font-size:16px}.rf-form{display:grid;gap:10px}.rf-question{border:1px solid #e3e8dd;background:#fff;border-radius:14px;padding:15px;margin-top:12px}
+.rf-progress{height:8px;background:#e0eade;border-radius:20px;overflow:hidden}.rf-progress>div{height:100%;background:#75a36f}
+.rf-pet-badge{display:inline-grid;place-items:center;width:44px;height:44px;font-size:25px;background:#eaf4e4;border-radius:15px}
+@media(max-width:760px){.rf-login-layout,.rf-two{grid-template-columns:1fr}.rf-welcome{min-height:270px;padding:26px}.rf-vegetables{margin-top:10px}.rf-veg{width:60px;height:70px;font-size:42px}.rf-login-card{padding:24px}.rf-page{padding:18px}.rf-mission{align-items:start;flex-direction:column}}
+
+</style>
 </head>
 <body>
+
+<section class="rf-login" id="rfLogin" aria-label="루틴팜 시작하기">
+  <div class="rf-login-layout"><div class="rf-welcome"><div class="eyebrow">ROUTINE FARM · STUDY & GROW</div><h1>오늘의 배움이<br>내일의 새싹으로 🌱</h1><p>과제를 작은 미션으로 나누고, 친구와 문제를 나누며, 나만의 농작물 친구를 키워요.</p><div class="rf-vegetables" aria-hidden="true"><span class="rf-veg">🥔</span><span class="rf-veg">🥕</span><span class="rf-veg">🍠</span><span class="rf-veg">🌱</span></div></div>
+  <form class="rf-login-card" id="rfLoginForm"><div class="eyebrow">WELCOME TO YOUR FARM</div><h2>나의 정원 시작하기</h2><p>별명과 함께할 작물을 골라주세요. 로그인 데모로, 계정 인증 없이 이 브라우저에만 저장됩니다.</p><div class="field"><label for="rfNickname">닉네임</label><input id="rfNickname" maxlength="20" required placeholder="예: 공부하는 감자" autocomplete="nickname"></div><div class="field"><label>나의 첫 농작물</label><div class="rf-pick" id="rfCharacterPick"><button type="button" class="selected" data-crop="potato" aria-pressed="true">🥔<small>감자</small></button><button type="button" data-crop="carrot" aria-pressed="false">🥕<small>당근</small></button><button type="button" data-crop="sweetpotato" aria-pressed="false">🍠<small>고구마</small></button><button type="button" data-crop="radish" aria-pressed="false">🌱<small>무</small></button></div></div><button class="rf-primary" type="submit" style="width:100%">내 정원 입장하기 →</button><p class="rf-note">시제품 안내 · 개인정보 및 학습 기록은 현재 기기의 localStorage에만 저장됩니다. 실제 회원가입/서버 동기화는 제공하지 않습니다.</p></form></div>
+</section>
   <div class="app">
     <header class="topbar">
       <div class="brand"><span class="brand-mark">✿</span><span>루틴팜</span></div>
       <div class="top-actions">
         <button class="sync-pill" id="openLms"><span class="sync-light" id="syncLight"></span><span class="sync-label" id="syncLabel">LearningX 연결하기</span><span>⌄</span></button>
-        <div class="profile-pill"><span class="avatar-mini">🐣</span><span style="font-size:12px;font-weight:800">나의 정원</span></div>
+        <button class="profile-pill" id="rfProfile" title="캐릭터 변경 및 로그아웃"><span class="avatar-mini" id="rfAvatar">🥔</span><span style="font-size:12px;font-weight:800" id="rfProfileName">나의 정원</span></button>
       </div>
     </header>
 
@@ -154,6 +186,8 @@
       <button class="tab active" data-view="home">오늘의 정원</button>
       <button class="tab" data-view="collection">수집 도감</button>
       <button class="tab" data-view="history">성장 기록</button>
+      <button class="tab" data-view="missions">학습 미션</button>
+      <button class="tab" data-view="friends">친구 문제 교환</button>
     </nav>
 
     <section class="view active" id="view-home">
@@ -260,6 +294,10 @@
         <div id="historyList"></div>
       </div>
     </section>
+
+<section class="view" id="view-missions"><div class="card rf-page"><div class="eyebrow">SMALL STEPS, BIG GROWTH</div><h2 class="rf-heading">과제를 작은 미션으로 🌿</h2><p class="rf-sub">LearningX 과제 제출과 별개로 관리되는 학습 미션입니다. 과제 원문과 마감일을 직접 입력해 주세요.</p>
+<div class="rf-two"><div class="rf-panel"><h3>📚 과제 등록</h3><form class="rf-form" id="rfMissionForm"><input class="rf-input" id="rfAssignmentTitle" placeholder="과제 제목 (예: AI 윤리 보고서)" maxlength="80" required><input class="rf-input" id="rfAssignmentDue" type="date" required><textarea class="rf-textarea" id="rfAssignmentDesc" placeholder="과제 안내문 또는 학습 목표를 입력해 주세요"></textarea><input class="rf-input" id="rfAssignmentUrl" type="url" placeholder="LearningX 원문 링크 (선택)"><button type="submit" class="rf-primary">5단계 학습 미션 만들기</button></form><p class="rf-note">과제 유형에 맞춘 기본 단계 템플릿을 제공합니다. 실제 AI 연동은 후속 개발 범위입니다.</p></div><div class="rf-panel"><h3>🌱 내 학습 미션</h3><div id="rfMissionList"></div></div></div></div></section>
+<section class="view" id="view-friends"><div class="card rf-page"><div class="eyebrow">LEARN BETTER TOGETHER</div><h2 class="rf-heading">친구와 문제 교환하기 💌</h2><p class="rf-sub">학습한 내용을 문제로 만들고 풀어 보세요. 이 시연 버전은 동일 브라우저에서만 문제를 보관합니다.</p><div class="rf-two"><div class="rf-panel"><h3>✏️ 연습문제 만들기</h3><form class="rf-form" id="rfQuizForm"><input class="rf-input" id="rfQuizTopic" placeholder="학습 범위 / 강의 이름" required maxlength="80"><textarea class="rf-textarea" id="rfQuizQuestion" placeholder="객관식 질문을 작성해 주세요" required></textarea><input class="rf-input" id="rfQuizOptions" placeholder="보기 4개를 | 로 구분 (예: A|B|C|D)" required><select class="rf-select" id="rfQuizAnswer"><option value="0">정답: 1번</option><option value="1">정답: 2번</option><option value="2">정답: 3번</option><option value="3">정답: 4번</option></select><textarea class="rf-textarea" id="rfQuizExplanation" placeholder="정답 해설 (필수)" required></textarea><button class="rf-primary" type="submit">검토 완료 후 문제 등록</button></form><p class="rf-note">AI 문제 생성은 연결되지 않았습니다. 작성자가 문제와 해설을 직접 작성·검토합니다.</p></div><div class="rf-panel"><h3>📬 나의 문제함 <span id="rfQuizCount"></span></h3><div id="rfQuizList"></div></div></div></div></section>
   </div>
 
   <div class="modal-backdrop" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
@@ -525,5 +563,31 @@
       render();
     })();
   </script>
+
+<script>
+(function(){
+"use strict";
+var $=s=>document.querySelector(s), $=s=>Array.from(document.querySelectorAll(s));
+var key="routinefarm-learning-v1", session={nickname:"",crop:"potato",missions:[],quizzes:[]};
+try{var saved=JSON.parse(localStorage.getItem(key)||"null");if(saved&&typeof saved==="object")session=Object.assign(session,saved)}catch(e){}
+var crops={potato:["🥔","감자"],carrot:["🥕","당근"],sweetpotato:["🍠","고구마"],radish:["🌱","무"]};
+var esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+var save=()=>localStorage.setItem(key,JSON.stringify(session));
+var toast=msg=>{var el=$("#toast");el.textContent=msg;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2500)};
+var selected="potato";
+function profile(){var avatar=(crops[session.crop]||crops.potato)[0];$("#rfAvatar").textContent=avatar;$("#rfProfileName").textContent=(session.nickname||"나의")+"의 정원";}
+function entrance(){if(session.nickname){$("#rfLogin").hidden=true;profile()}else{$("#rfLogin").hidden=false;$("#rfNickname").focus()}}
+$("#rfCharacterPick button").forEach(b=>b.addEventListener("click",()=>{selected=b.dataset.crop;$("#rfCharacterPick button").forEach(x=>{var on=x===b;x.classList.toggle("selected",on);x.setAttribute("aria-pressed",String(on))})}));
+$("#rfLoginForm").addEventListener("submit",e=>{e.preventDefault();var name=$("#rfNickname").value.trim();if(!name)return;session.nickname=name;session.crop=selected;save();entrance();toast("환영해요! 오늘의 정원에 입장했어요 🌱")});
+$("#rfProfile").addEventListener("click",()=>{if(!confirm("캐릭터를 다시 선택할까요? 기존 학습 기록은 유지됩니다."))return;session.nickname="";save();$("#rfNickname").value="";entrance()});
+function missions(){var list=$("#rfMissionList");if(!session.missions.length){list.innerHTML='<p class="rf-note">등록된 미션이 없어요. 첫 과제를 심어 보세요!</p>';return}list.innerHTML=session.missions.map((m,i)=>{var done=m.steps.filter(x=>x.done).length;return '<div class="rf-question"><strong>'+esc(m.title)+'</strong><p class="rf-note">마감 '+esc(m.due)+' · 학습 미션 '+done+'/5 · <a target="_blank" rel="noopener noreferrer" href="'+(m.url&&/^https:\/\//.test(m.url)?esc(m.url):"#")+'">과제 원문</a></p><div class="rf-progress"><div style="width:'+(done*20)+'%"></div></div>'+m.steps.map((st,j)=>'<label style="display:block;margin-top:11px;font-size:13px"><input type="checkbox" data-mi="'+i+'" data-si="'+j+'" '+(st.done?"checked":"")+' /> '+esc(st.title)+'</label>').join("")+'<p class="rf-note">앱 미션 완료는 LearningX 제출 완료를 뜻하지 않습니다.</p></div>'}).join("")}
+$("#rfMissionForm").addEventListener("submit",e=>{e.preventDefault();var title=$("#rfAssignmentTitle").value.trim(),due=$("#rfAssignmentDue").value,desc=$("#rfAssignmentDesc").value.trim(),url=$("#rfAssignmentUrl").value.trim();if(!title||!due)return;session.missions.unshift({title,due,desc,url,steps:["요구사항과 제출 조건 확인","자료 읽고 핵심 개념 정리","목차와 진행 계획 작성","나만의 초안 작성","검토 후 LearningX 제출 직접 확인"].map(title=>({title,done:false}))});save();missions();e.target.reset();toast("새 과제를 5개의 미션으로 나눴어요!")});
+$("#rfMissionList").addEventListener("change",e=>{var el=e.target;if(el.type!=="checkbox")return;var m=session.missions[Number(el.dataset.mi)],step=m&&m.steps[Number(el.dataset.si)];if(!step)return;step.done=el.checked;save();missions();toast(step.done?"작은 실천 완료! 🌿":"미션 진행 상태를 변경했어요")});
+function quizzes(){var list=$("#rfQuizList");$("#rfQuizCount").textContent="("+session.quizzes.length+")";if(!session.quizzes.length){list.innerHTML='<p class="rf-note">아직 공유한 문제가 없어요.</p>';return}list.innerHTML=session.quizzes.map((q,i)=>'<div class="rf-question"><div class="rf-note">작성자 검토 완료 · '+esc(q.topic)+'</div><b>'+esc(q.question)+'</b>'+q.options.map((op,j)=>'<label style="display:block;font-size:13px;margin-top:10px"><input type="radio" name="rf-answer-'+i+'" value="'+j+'"> '+(j+1)+'. '+esc(op)+'</label>').join("")+'<div class="rf-actions" style="margin-top:12px"><button class="rf-soft" data-solve="'+i+'">정답 확인</button><button class="rf-soft" data-copy="'+i+'">문제 복사</button></div><div class="rf-note" id="rfResult-'+i+'" aria-live="polite"></div></div>').join("")}
+$("#rfQuizForm").addEventListener("submit",e=>{e.preventDefault();var options=$("#rfQuizOptions").value.split("|").map(s=>s.trim());if(options.length!==4||options.some(x=>!x)){toast("보기 4개를 | 로 구분해 입력해 주세요.");return}session.quizzes.unshift({topic:$("#rfQuizTopic").value.trim(),question:$("#rfQuizQuestion").value.trim(),options,answer:Number($("#rfQuizAnswer").value),explanation:$("#rfQuizExplanation").value.trim()});save();quizzes();e.target.reset();toast("검토한 문제가 등록됐어요!")});
+$("#rfQuizList").addEventListener("click",e=>{var btn=e.target.closest("button");if(!btn)return;var i=Number(btn.dataset.solve??btn.dataset.copy),q=session.quizzes[i];if(!q)return;if(btn.dataset.solve!==undefined){var picked=$('input[name="rf-answer-'+i+'"]:checked'),result=$("#rfResult-"+i);if(!picked){result.textContent="먼저 답을 선택해 주세요.";return}result.textContent=(Number(picked.value)===q.answer?"정답이에요! 🌟 ":"다시 복습해 봐요. ")+"정답: "+(q.answer+1)+"번 · "+q.explanation}else if(btn.dataset.copy!==undefined){var text=[q.topic,q.question,...q.options.map((v,j)=>(j+1)+". "+v)].join("\n");if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>toast("문제를 복사했어요!")).catch(()=>toast("브라우저 복사 권한을 확인해 주세요."));else toast("이 브라우저에서는 복사를 지원하지 않아요.")}});
+entrance();missions();quizzes();
+})();
+</script>
 </body>
 </html>
